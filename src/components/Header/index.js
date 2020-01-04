@@ -24,7 +24,7 @@ export default function Header() {
             <strong>{profile.name}</strong>
             <Link to="/profile">Meu perfil</Link>
           </Profile>
-          <img src={profile.avatar.url || Avatar} alt='avatar'/>
+          <img src={profile.avatar ? profile.avatar.url : Avatar} alt='avatar'/>
         </aside>
       </Content>
     </Container>

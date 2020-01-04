@@ -20,9 +20,9 @@ export default function Avatar() {
           name: 'avatar_id',
           ref: ref.current,
           path: 'dataset.file'
-        })
+        });
       }
-  }, [ref])
+  }, [ref]); // eslint-disable-line
 
 
   async function handleImageChange(e) {
@@ -42,7 +42,13 @@ export default function Avatar() {
       <label htmlFor="avatar">
         <img src={preview || AvatarPreviewDefault} alt="" />
       </label>
-      <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} data-file={file} ref={ref} />
+      <input 
+      type="file" 
+      id="avatar" 
+      accept="image/*" 
+      onChange={handleImageChange} 
+      data-file={file} 
+      ref={ref} />
 
     </Container>
   );

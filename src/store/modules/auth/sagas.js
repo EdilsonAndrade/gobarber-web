@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 import api from '~/services/api';
 import history from '~/services/history';
 import { signinSuccess, signinFailure } from './actions'
-function* signin({ payload }) {
+
+export function* signin({ payload }) {
   try {
     const { email, password } = payload;
     const response = yield call(api.post, 'sessions', {
@@ -32,7 +33,7 @@ function* signin({ payload }) {
 
 }
 
-function* signUp({ payload }) {
+export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
     yield call(api.post, '/users', {
@@ -48,15 +49,20 @@ function* signUp({ payload }) {
     yield put(signinFailure());
   }
 }
-function setToken({payload}) {
+export function setToken({payload}) {
   if (!payload) return;
   
   const { token } = payload.auth;
   api.defaults.headers.Authorization = `Bearer ${token}`
 }
+
+export function signOut(){
+  history.push('/');
+}
 export default all(
   [
     takeLatest('persist/REHYDRATE', setToken),
     takeLatest('@auth/SIGNIN_REQUEST', signin),
-    takeLatest('@auth/SIGNUP_REQUEST', signUp)
+    takeLatest('@auth/SIGNUP_REQUEST', signUp),
+    takeLatest('@auth/SIGN_OUT', signOut)
   ]);

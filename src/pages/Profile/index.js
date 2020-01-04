@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Input} from '@rocketseat/unform';
 import {useSelector, useDispatch} from 'react-redux';
 import {updateProfileRequest} from '~/store/modules/user/actions';
+import {signOut} from '~/store/modules/auth/actions';
 import {Container} from './styles';
 import AvatarInput from './AvatarInput/index';
 
@@ -11,6 +12,7 @@ export default function Profile() {
   function handUpdateProfile(data){
    dispatch(updateProfileRequest({data}));
   }
+
   return (
     <Container>
       <Form initialData={profile} onSubmit={handUpdateProfile}> 
@@ -25,7 +27,7 @@ export default function Profile() {
         <Input name="confirmPassword" type="password" placeholder="Sua senha atual"/>
         <button type="submit" >Atualizar dados</button>
       </Form>
-      <button type="button" >Deslogar usuário</button>
+      <button type="button" onClick={()=>dispatch(signOut())} >Deslogar usuário</button>
     </Container>
   );
 }

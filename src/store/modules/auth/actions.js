@@ -24,3 +24,9 @@ export const signinFailure = () =>{
   }
 }
 
+export const signOut = () =>{
+  return {
+    type: '@auth/SIGN_OUT',
+  }
+}
+
