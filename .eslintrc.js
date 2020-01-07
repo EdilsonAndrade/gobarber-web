@@ -39,4 +39,5 @@ module.exports = {
         rootPathSuffix: "src"
       },
     },
+  }
 };
